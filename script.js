@@ -36,8 +36,10 @@ function makeRows(rows, cols) {
     container.style.cssText = `grid-template-columns: repeat(${cols} , 1fr); grid-template-rows: repeat(${rows} , 1fr)`;
 
     for (c = 0; c < (rows * cols); c++) {
-    let cell = document.createElement("div");
-    container.appendChild(cell).className = "grid-item";
+        let cell = document.createElement("div");
+        if(gridOn == true)
+            cell.style.border = '1px solid #ddd'
+        container.appendChild(cell).className = "grid-item";
     };
     
     squares = document.querySelectorAll('.grid-item')
@@ -51,7 +53,6 @@ function makeRows(rows, cols) {
 makeRows(16, 16);
 
 function reloadGrid() {
-    clearing = true;
     squares.forEach(square => {
         square.style.transition = 'background-color 0.5s';
         square.style.backgroundColor = 'white';
