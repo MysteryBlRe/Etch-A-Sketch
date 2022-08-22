@@ -48,6 +48,9 @@ function reloadGrid() {
     squares.forEach(square => {
         square.style.transition = 'background-color 0.2s';
         square.style.backgroundColor = 'white';
+        if(gridOn == true){
+            square.style.border = '1px solid #ddd';
+        }
     })
 }
 
