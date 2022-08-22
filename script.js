@@ -5,6 +5,10 @@ const clearBtn = document.querySelector('.clearBtn');
 const rainbowBtn = document.querySelector('.rainbowBtn');
 const gridBtn = document.querySelector('.gridBtn');
 const eraserBtn = document.querySelector('.eraserBtn');
+const slider = document.querySelector('.range')
+let squares;
+slider.onchange = () => resize(slider.value)
+const resoultionDisplay = document.querySelector('.show-size')
 let currentColor;
 let gridOn;
 gridOn = false;
@@ -35,16 +39,21 @@ function makeRows(rows, cols) {
     let cell = document.createElement("div");
     container.appendChild(cell).className = "grid-item";
     };
-  
+    
+    squares = document.querySelectorAll('.grid-item')
+
+    squares.forEach(square => {
+        square.addEventListener('mousedown', draw)
+        square.addEventListener('mouseover', draw)
+    });
 };
 
 makeRows(16, 16);
-const squares = document.querySelectorAll('.grid-item')
 
 function reloadGrid() {
     clearing = true;
     squares.forEach(square => {
-        square.style.transition = 'background-color 0.2s';
+        square.style.transition = 'background-color 0.5s';
         square.style.backgroundColor = 'white';
     })
 }
@@ -72,11 +81,6 @@ function draw(e){
     this.style.backgroundColor = `${currentColor}`
 }
 
-squares.forEach(square => {
-    square.addEventListener('mousedown', draw)
-    square.addEventListener('mouseover', draw)
-});
-
 function toggleGrid(btn){
     if(gridOn == false){
         squares.forEach(square => {
@@ -97,9 +101,19 @@ function toggleGrid(btn){
 
 }
 
-console.log(clearBtn)
+function resize(size){
+    container.textContent = ''
+    makeRows(size, size)
+}
+
+function updateSliderValue(slider){
+    resoultionDisplay.textContent = slider.value + "x" + slider.value
+}
+
+
 clearBtn.onclick = () => reloadGrid()
 colorBtn.onclick = () => activateButton(colorBtn)
 rainbowBtn.onclick = () => activateButton(rainbowBtn)
 eraserBtn.onclick = () => activateButton(eraserBtn)
 gridBtn.onclick = () => toggleGrid(gridBtn)
+slider.oninput = () => updateSliderValue(slider)

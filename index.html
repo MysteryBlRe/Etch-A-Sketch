@@ -16,12 +16,18 @@
 
     <div class="UI">
         <div class="controls">
-            <input type="color" class="color-selector">
-            <button class="colorBtn">Color mode</button>
-            <button class="rainbowBtn">Rainbow mode</button>
-            <button class="eraserBtn">Eraser</button>
-            <button class="gridBtn">Toggle grid</button>
-            <button class="clearBtn">Clear</button>
+            <div class="hover">
+                <input type="color" class="color-selector">
+                <button class="colorBtn">Color mode</button>
+                <button class="rainbowBtn">Rainbow mode</button>
+                <button class="eraserBtn">Eraser</button>
+                <button class="gridBtn">Toggle grid</button>
+                <button class="clearBtn">Clear</button>
+            </div>
+            <div class="slider">
+                <div class="show-size">16x16</div>
+                <input type="range" min="1" max="64" value="16" class="range">
+            </div>
         </div>
 
         <div ID="container">
