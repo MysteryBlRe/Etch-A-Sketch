@@ -58,6 +58,7 @@ function randomRGBColor() {
 }
 
 function draw(e){
+    this.style.transition = 'background-color 0s'
     if(e.type == 'mouseover' && mouseDown == false) return;
     if(activeButton == colorBtn){
         currentColor = colorPicker.value;
