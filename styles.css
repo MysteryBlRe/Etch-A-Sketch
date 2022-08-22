@@ -33,7 +33,6 @@ body {
 
 .grid-item {
     background-color: white;
-    border: 1px solid #ddd;
     user-select: none;
 }
 
@@ -58,4 +57,12 @@ body {
     width: 100%;
     cursor: pointer;
     font-size: inherit;
+}
+
+.controls * {
+    transition: transform 0.1s;
+}
+
+.controls *:hover {
+    transform: scale(1.05);
 }

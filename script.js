@@ -3,7 +3,10 @@ const colorPicker = document.querySelector('.color-selector');
 const colorBtn = document.querySelector('.colorBtn');
 const clearBtn = document.querySelector('.clearBtn');
 const rainbowBtn = document.querySelector('.rainbowBtn');
+const gridBtn = document.querySelector('.gridBtn');
 let currentColor;
+let gridOn;
+gridOn = false;
 
 let activeButton = colorBtn
 activateButton(colorBtn)
@@ -52,6 +55,7 @@ function randomRGBColor() {
     let r = Math.floor(Math.random()*(256));
     let g = Math.floor(Math.random()*(256));
     let b = Math.floor(Math.random()*(256));
+    let a = Math.floor(Math.random()*(256));
     return randomRGB = "rgb(" + r + "," + g + "," + b + ")"; 
 }
 
@@ -71,7 +75,28 @@ squares.forEach(square => {
     square.addEventListener('mouseover', draw)
 });
 
+function toggleGrid(btn){
+    if(gridOn == false){
+        squares.forEach(square => {
+            square.style.border = '1px solid #ddd';
+        })
+        gridOn = true;
+        btn.style.backgroundColor = '#333'
+        btn.style.color = 'white'
+    }
+    else {
+        squares.forEach(square => {
+            square.style.border = 'none';
+        })
+        gridOn = false;
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = 'black';
+    }
+
+}
+
 console.log(clearBtn)
 clearBtn.onclick = () => reloadGrid()
 colorBtn.onclick = () => activateButton(colorBtn)
 rainbowBtn.onclick = () => activateButton(rainbowBtn)
+gridBtn.onclick = () => toggleGrid(gridBtn)
