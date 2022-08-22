@@ -3,21 +3,21 @@ const colorPicker = document.querySelector('.color-selector');
 const colorBtn = document.querySelector('.colorBtn');
 const clearBtn = document.querySelector('.clearBtn');
 const rainbowBtn = document.querySelector('.rainbowBtn');
+let currentColor;
 
-let mode = 'color'
+let activeButton = colorBtn
+activateButton(colorBtn)
 
 function activateButton(btn){
+    activeButton.style.backgroundColor = 'transparent';
+    activeButton.style.color = 'black';
+    if(btn == colorBtn)
+        activeButton = colorBtn
+    else if(btn == rainbowBtn)
+        activeButton = rainbowBtn
     btn.style.backgroundColor = '#333'
     btn.style.color = 'white'
 }
-
-if(mode == 'color'){
-    activateButton(colorBtn)
-}
-else if(mode == 'rainbow'){
-    activateButton(rainbowBtn)
-}
-    
 
 
 let mouseDown = false;
@@ -48,9 +48,21 @@ function reloadGrid() {
     })
 }
 
+function randomRGBColor() {
+    let r = Math.floor(Math.random()*(256));
+    let g = Math.floor(Math.random()*(256));
+    let b = Math.floor(Math.random()*(256));
+    return randomRGB = "rgb(" + r + "," + g + "," + b + ")"; 
+}
+
 function draw(e){
     if(e.type == 'mouseover' && mouseDown == false) return;
-    let currentColor = colorPicker.value;
+    if(activeButton == colorBtn){
+        currentColor = colorPicker.value;
+    }
+    else if(activeButton == rainbowBtn){
+        currentColor = randomRGBColor()
+    }
     this.setAttribute('style', `background-color: ${currentColor}`)
 }
 
@@ -61,3 +73,5 @@ squares.forEach(square => {
 
 console.log(clearBtn)
 clearBtn.onclick = () => reloadGrid()
+colorBtn.onclick = () => activateButton(colorBtn)
+rainbowBtn.onclick = () => activateButton(rainbowBtn)
