@@ -4,6 +4,7 @@ const colorBtn = document.querySelector('.colorBtn');
 const clearBtn = document.querySelector('.clearBtn');
 const rainbowBtn = document.querySelector('.rainbowBtn');
 const gridBtn = document.querySelector('.gridBtn');
+const eraserBtn = document.querySelector('.eraserBtn');
 let currentColor;
 let gridOn;
 gridOn = false;
@@ -14,10 +15,7 @@ activateButton(colorBtn)
 function activateButton(btn){
     activeButton.style.backgroundColor = 'transparent';
     activeButton.style.color = 'black';
-    if(btn == colorBtn)
-        activeButton = colorBtn
-    else if(btn == rainbowBtn)
-        activeButton = rainbowBtn
+    activeButton = btn;
     btn.style.backgroundColor = '#333'
     btn.style.color = 'white'
 }
@@ -48,9 +46,6 @@ function reloadGrid() {
     squares.forEach(square => {
         square.style.transition = 'background-color 0.2s';
         square.style.backgroundColor = 'white';
-        if(gridOn == true){
-            square.style.border = '1px solid #ddd';
-        }
     })
 }
 
@@ -70,7 +65,10 @@ function draw(e){
     else if(activeButton == rainbowBtn){
         currentColor = randomRGBColor()
     }
-    this.setAttribute('style', `background-color: ${currentColor}`)
+    else if(activeButton == eraserBtn)(
+        currentColor = 'white'
+    )
+    this.style.backgroundColor = `${currentColor}`
 }
 
 squares.forEach(square => {
@@ -102,4 +100,5 @@ console.log(clearBtn)
 clearBtn.onclick = () => reloadGrid()
 colorBtn.onclick = () => activateButton(colorBtn)
 rainbowBtn.onclick = () => activateButton(rainbowBtn)
+eraserBtn.onclick = () => activateButton(eraserBtn)
 gridBtn.onclick = () => toggleGrid(gridBtn)
