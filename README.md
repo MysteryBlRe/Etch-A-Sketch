@@ -1,2 +1,3 @@
 # Etch-A-Sketch
 I hate to admit that I'm literally addicted to this and there isn't a day where I don't draw at least once a smirk...
+![image](https://user-images.githubusercontent.com/50925573/220183886-7968f2ab-02be-4b80-8a73-fe67916a1749.png)
